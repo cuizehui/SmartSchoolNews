@@ -37,7 +37,7 @@
             style="@style/radioButtonStyle"
 
             android:drawableTop="@drawable/rb_govaffairs_selector"
-            android:text="智慧" />
+            android:text="校园地图" />
 
         <RadioButton
             android:id="@+id/rb_main_content_settingcenter"

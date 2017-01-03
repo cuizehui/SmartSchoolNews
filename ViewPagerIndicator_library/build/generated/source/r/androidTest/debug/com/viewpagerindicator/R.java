@@ -108,10 +108,9 @@ public final class R {
 	}
 	public static final class style {
 		public static final int TextAppearance_TabPageIndicator = 0x7f080000;
-		public static final int Theme_PageIndicatorDefaults = 0x7f080001;
-		public static final int Widget = 0x7f080002;
-		public static final int Widget_IconPageIndicator = 0x7f080003;
-		public static final int Widget_TabPageIndicator = 0x7f080004;
+		public static final int Widget = 0x7f080001;
+		public static final int Widget_IconPageIndicator = 0x7f080002;
+		public static final int Widget_TabPageIndicator = 0x7f080003;
 	}
 	public static final class styleable {
 		public static final int[] CirclePageIndicator = { 0x010100c4, 0x010100d4, 0x7f010000, 0x7f010002, 0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007, 0x7f010008 };

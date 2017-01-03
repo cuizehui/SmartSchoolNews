@@ -19,7 +19,7 @@
     <color name="default_title_indicator_text_color">#BBFFFFFF</color>
     <color name="default_underline_indicator_selected_color">#FF33B5E5</color>
     <color name="vpi__background_holo_dark">#ff000000</color>
-    <color name="vpi__background_holo_light">#fff3f3f3</color>
+    <color name="vpi__background_holo_light">#8c8888</color>
     <color name="vpi__bright_foreground_disabled_holo_dark">#ff4c4c4c</color>
     <color name="vpi__bright_foreground_disabled_holo_light">#ffb2b2b2</color>
     <color name="vpi__bright_foreground_holo_dark">@color/vpi__background_holo_light</color>
@@ -52,10 +52,6 @@
     <style name="TextAppearance.TabPageIndicator" parent="Widget">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/vpi__dark_theme</item>
-    </style>
-    <style name="Theme.PageIndicatorDefaults" parent="android:Theme">
-        <item name="vpiIconPageIndicatorStyle">@style/Widget.IconPageIndicator</item>
-        <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>
     </style>
     <style name="Widget">
     </style>

@@ -21,7 +21,7 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="Theme.PageIndicatorDefaults" parent="android:Theme.Holo.NoActionBar">
+    <style name="Theme.PageIndicatorDefaults" parent="android:Theme.Light.NoTitleBar">
 
         <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>
     </style>

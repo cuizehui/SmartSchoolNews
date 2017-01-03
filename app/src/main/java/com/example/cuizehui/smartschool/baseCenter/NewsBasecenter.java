@@ -93,10 +93,6 @@ public class NewsBasecenter extends BaseCenterPaper {
             Tip_newsCenter tip_newsCenter=new Tip_newsCenter(mainActivity,childrendatalists.get(position));
 
 
-            /*  TextView textView=new TextView(mainActivity);
-            textView.setText(childrendatalists.get(position).getTitle());
-            container.addView(textView);
-          */
             container.addView(tip_newsCenter.getRoot());
             return tip_newsCenter.getRoot();
         }

@@ -72,7 +72,6 @@ public class MapPager_view extends  BasePager_view {
         mLocClient.start();
 
 
-
     }
 
 

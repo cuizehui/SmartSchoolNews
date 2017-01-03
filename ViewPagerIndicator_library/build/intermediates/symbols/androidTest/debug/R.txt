@@ -84,10 +84,9 @@ int integer default_title_indicator_line_position 0x7f070002
 int integer default_underline_indicator_fade_delay 0x7f070003
 int integer default_underline_indicator_fade_length 0x7f070004
 int style TextAppearance_TabPageIndicator 0x7f080000
-int style Theme_PageIndicatorDefaults 0x7f080001
-int style Widget 0x7f080002
-int style Widget_IconPageIndicator 0x7f080003
-int style Widget_TabPageIndicator 0x7f080004
+int style Widget 0x7f080001
+int style Widget_IconPageIndicator 0x7f080002
+int style Widget_TabPageIndicator 0x7f080003
 int[] styleable CirclePageIndicator { 0x010100c4, 0x010100d4, 0x7f010000, 0x7f010002, 0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007, 0x7f010008 }
 int styleable CirclePageIndicator_android_background 1
 int styleable CirclePageIndicator_android_orientation 0

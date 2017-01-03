@@ -337,10 +337,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class style {
         public static int TextAppearance_TabPageIndicator=0x7f080000;
-        public static int Theme_PageIndicatorDefaults=0x7f080001;
-        public static int Widget=0x7f080002;
-        public static int Widget_IconPageIndicator=0x7f080003;
-        public static int Widget_TabPageIndicator=0x7f080004;
+        public static int Widget=0x7f080001;
+        public static int Widget_IconPageIndicator=0x7f080002;
+        public static int Widget_TabPageIndicator=0x7f080003;
     }
     public static final class styleable {
         /** Attributes that can be used with a CirclePageIndicator.
