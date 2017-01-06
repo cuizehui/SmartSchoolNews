@@ -8,7 +8,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  * Created by cuizehui on 2016/12/24at ${time}.
  */
 public class RetrofitFactory {
-    private static String baseUrl = "http://192.168.0.105:8080/zhbj/";
+    private static String baseUrl = "http://192.168.0.106:8080/zhbj/";
 
     private static Retrofit stringRetrofit = new Retrofit.Builder()
             .baseUrl(baseUrl)

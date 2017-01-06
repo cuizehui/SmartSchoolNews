@@ -1,5 +1,7 @@
 package com.example.cuizehui.smartschool.net;
 
+import com.example.cuizehui.smartschool.MyApplication;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -39,7 +41,7 @@ public class OkhttpFactory {
     }
 
     public Cache provideCache() {
-        return new Cache(mContext.getCacheDir(), 10240*1024);
+        return new Cache(MyApplication.getContext().getCacheDir(), 10240*1024);
     }
 
 

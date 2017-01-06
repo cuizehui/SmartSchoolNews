@@ -15,6 +15,7 @@ import com.example.cuizehui.smartschool.Utils.BitmapLoader;
 import com.example.cuizehui.smartschool.Utils.Connect;
 import com.example.cuizehui.smartschool.Utils.PhotoData;
 import com.example.cuizehui.smartschool.Utils.SPtools;
+import com.example.cuizehui.smartschool.helper.ImageLoaderHelper;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
@@ -141,10 +142,15 @@ public class PicsBascenter extends  BaseCenterPaper {
             else{
                 holder= (Holder) convertView.getTag();
             }
-            //三级缓存
+            ImageLoaderHelper  helper=new ImageLoaderHelper();
+            helper.loadImageView(holder.picimageView,photosData.get(position));
+
+          /*  //三级缓存
             BitmapLoader bitmapLoader=new BitmapLoader(mainActivity);
             bitmapLoader.displayBitmap(photosData.get(position),holder.picimageView);
-               holder.pictextview.setText(photosTitle.get(position));
+
+        */
+            holder.pictextview.setText(photosTitle.get(position));
             return convertView;
         }
     }

@@ -1,9 +1,6 @@
 package com.example.cuizehui.smartschool.newcenter;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.nfc.Tag;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -19,31 +16,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.cuizehui.smartschool.R;
-import com.example.cuizehui.smartschool.Utils.BitmapLoader;
 import com.example.cuizehui.smartschool.Utils.Connect;
 import com.example.cuizehui.smartschool.Utils.NewContextData;
 import com.example.cuizehui.smartschool.Utils.NewsCenterData;
 import com.example.cuizehui.smartschool.Utils.SPtools;
 import com.example.cuizehui.smartschool.activitys.MainActivity;
 import com.example.cuizehui.smartschool.activitys.NewsActivity;
+import com.example.cuizehui.smartschool.helper.ImageLoaderHelper;
 import com.example.cuizehui.smartschool.net.RetrofitFactory;
 import com.google.gson.Gson;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.assist.ImageSize;
-import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import org.xutils.ImageManager;
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.http.app.ParamsBuilder;
 import org.xutils.x;
 
-import java.security.Permission;
-import java.security.Policy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +60,7 @@ public class Tip_newsCenter  {
 
     private View headview;
     private Gson gson;
+    private String newsURL;
     //新闻列表的数据
 
     public Tip_newsCenter(MainActivity mainActivity, NewsCenterData.DataBean.ChildrenBean childrenBean) {
@@ -99,7 +85,7 @@ public class Tip_newsCenter  {
     }
     public void initData(){
         //思路2：做界面数据
-        Log.d("地址",Connect.BASE_SEVICE + childrenBean.getUrl());
+    //    Log.d("地址",Connect.BASE_SEVICE + childrenBean.getUrl());
         lunboAdapter=new LunboAdapter();
         viewPager.setAdapter(lunboAdapter);
         //将轮播图加到listView头部
@@ -111,8 +97,7 @@ public class Tip_newsCenter  {
         //做listview的数据：
 
         String CACHEDATA=SPtools.getsetsp(mainActivity,Connect.BASE_SEVICE+""+childrenBean.getUrl());
-        Log.d("Tag",""+childrenBean.getUrl());
-        if(!TextUtils.isEmpty(CACHEDATA)){
+         if(!TextUtils.isEmpty(CACHEDATA)){
               procressData(CACHEDATA);
         }
 
@@ -199,7 +184,11 @@ public class Tip_newsCenter  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                newsURL= newsListData.get(position).getUrl();
+                Log.d("newsUrl",newsURL+"");
                 Intent intent=new Intent(mainActivity, NewsActivity.class);
+
+                intent.putExtra("newsUrl",newsURL);
 
                 mainActivity.startActivity(intent);
             }
@@ -250,9 +239,11 @@ public class Tip_newsCenter  {
 
 
     class newsListAdapter extends BaseAdapter{
-           @Override
+         final int  NOMALTYPE=0;
+         final int  LOADMORE=1;
+        @Override
            public int getCount() {
-               return newsListData.size();
+               return newsListData.size()+1;
            }
 
            @Override
@@ -261,16 +252,33 @@ public class Tip_newsCenter  {
                return null;
            }
 
-           @Override
+        @Override
+        public int getItemViewType(int position) {
+            if(position!=newsListData.size()+1){
+                return  NOMALTYPE;
+            }else {
+                return LOADMORE;
+            }
+
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return super.getViewTypeCount()+1;
+        }
+
+        
+        @Override
            public long getItemId(int position) {
                return 0;
            }
 
            @Override
            public View getView(int position, View convertView, ViewGroup parent) {
-               LayoutInflater layoutInflater=LayoutInflater.from(mainActivity);
 
+               LayoutInflater layoutInflater=LayoutInflater.from(mainActivity);
                          NewsHolder holder=null;
+
                if(convertView==null){
                    holder=new NewsHolder();
                   convertView=   layoutInflater.inflate(R.layout.newslist_item,null);
@@ -286,41 +294,11 @@ public class Tip_newsCenter  {
                   holder.textView.setText(newsListData.get(position).getTitle());
                   holder.tv_time.setText(newsListData.get(position).getPubdate());
 
+                  final NewsHolder finalHolder = holder;
 
-               // bitmapUtils.bind(holder.iv_newspic,newsListData.get(position).getListimage());
+               ImageLoaderHelper ImageLoader=new ImageLoaderHelper();
+               ImageLoader.loadImageView(finalHolder.iv_newspic,newsListData.get(position).getListimage());
 
-               DisplayImageOptions options = new DisplayImageOptions.Builder()
-                      .resetViewBeforeLoading(false)  // default
-                       .delayBeforeLoading(1000)
-                       .cacheInMemory(false) // default
-                       .cacheOnDisk(false) // default
-                       .considerExifParams(false) // default
-                       .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2) // default
-                       .bitmapConfig(Bitmap.Config.ARGB_8888) // default
-                       .displayer(new SimpleBitmapDisplayer()) // default
-                       .handler(new Handler()) // default
-                       .build();
-               ImageSize mImageSize = new ImageSize(100, 100);
-
-               //显示图片的配置
-               DisplayImageOptions optionss = new DisplayImageOptions.Builder()
-                       .cacheInMemory(true)
-                       .cacheOnDisk(true)
-                       .bitmapConfig(Bitmap.Config.RGB_565)
-                       .build();
-
-               final NewsHolder finalHolder = holder;
-
-               ImageLoader.getInstance().loadImage(newsListData.get(position).getListimage(),mImageSize, optionss,  new SimpleImageLoadingListener(){
-
-                   @Override
-                   public void onLoadingComplete(String imageUri, View view,
-                                                 Bitmap loadedImage) {
-                       super.onLoadingComplete(imageUri, view, loadedImage);
-                       finalHolder.iv_newspic.setImageBitmap(loadedImage);
-                   }
-
-               });
 
                return convertView;
            }

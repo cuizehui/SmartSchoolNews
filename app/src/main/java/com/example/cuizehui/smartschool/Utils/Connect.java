@@ -7,9 +7,9 @@ import com.example.cuizehui.smartschool.fragments.SlidingContext_Fragment;
  * Created by cuizehui on 2016/8/11at ${time}.
  */
 public class Connect {
-    public static final String BASE_SEVICE="http://192.168.0.105:8080/zhbj";
+    public static final String BASE_SEVICE="http://192.168.0.106:8080/zhbj";
     public static final String NEWCenterURL= BASE_SEVICE+"categories.json";
-    public static final  String SERVERURL = "http://192.168.0.105:8080/zhbj";
+    public static final  String SERVERURL = "http://192.168.0.106:8080/zhbj";
     public static final  String PHOTOSURL = SERVERURL + "/photos/photos_1.json";
 
 }
