@@ -1,5 +1,5 @@
 # SmartSchoolNews
-智慧校园新闻
+智慧校园新闻系统
 
 ## 简介
 
